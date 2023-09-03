@@ -1,28 +1,39 @@
-// const http=require("http");
+
 const express=require("express");
+const bodyParser=require('body-parser');
+
 
 const app=express();
 
-app.use((req,res,next)=>{
-    console.log('This is middleware')
-    next()
-})
+app.use(bodyParser.urlencoded({extended:false}))
+//this will enocde the body that we will receive from input type of form html
 
-app.use((req,res,next)=>{
-    console.log('This is another middleware')
+
+// app.use("/",(req,res,next)=>{
+//     console.log('This always runs')
+//     next()
+
+// })
+
+
+app.use('/add-product',(req,res,next)=>{
+    // console.log('This is middleware')
+    res.send('<form action="/product" method="POST"><input type="text" name="title" ><button type="submit">Add product</button></form>')
     // next()
-    // res.send('<h1> hello to node js </h1>') 
-    res.send( { key1: "value" })
+})
 
-    //content-Type:application/json; charset=utf-8
-
-
+app.use("/product",(req,res,next)=>{
+    console.log(req.body)
+    // res.redirect('/add-product')
+    res.redirect('/')
+    // res.send("<h1>Welcome to Express</h1>")
 
 })
 
+app.use("/",(req,res,next)=>{
+    res.send("<h1>Welcome to Express</h1>")
 
-// const server=http.createServer(app);
-// server.listen(3000)
+})
+
 app.listen(3000)
-////Internally do the same thing calls itself inside createrserver
 
