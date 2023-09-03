@@ -11,10 +11,15 @@ app.use(bodyParser.urlencoded({extended:false}))
 const adminRouter=require('./routes/admin');
 const shopRouter=require('./routes/shop')
 
-app.use(adminRouter)
+app.use('/admin',adminRouter)
 app.use(shopRouter)
 //here we can use this route prior to adminRouter as shop route is using get function this will not trigger the shoprouter when we enter the admin route
 //In case of app.use shopRouter will be triggered ("/")
+
+
+app.use((req,res,next)=>{
+    res.status(404).send("<h1>Page not found</h1>")
+})
 
 
 
