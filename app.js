@@ -12,12 +12,16 @@ app.use(express.static(path.join(__dirname,'public')))
 //Routes
 const adminRouter=require('./routes/admin');
 const shopRouter=require('./routes/shop');
+const contactusRouter=require('./routes/contactus')
+const successRouter=require('./routes/succcess')
 
 
 app.use('/admin',adminRouter)
 app.use(shopRouter)
+app.use(contactusRouter)
 //here we can use this route prior to adminRouter as shop route is using get function this will not trigger the shoprouter when we enter the admin route
 //In case of app.use shopRouter will be triggered ("/")
+app.use(successRouter)
 
 
 app.use((req,res,next)=>{
