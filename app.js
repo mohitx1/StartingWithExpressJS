@@ -6,11 +6,13 @@ const port=3000;
 
 app.use(bodyParser.urlencoded({extended:false}))
 //this will enocde the body that we will receive from input type of form html
-
+app.use(express.static(path.join(__dirname,'public')))
+//used to render static file of public folder read only file
 
 //Routes
 const adminRouter=require('./routes/admin');
-const shopRouter=require('./routes/shop')
+const shopRouter=require('./routes/shop');
+
 
 app.use('/admin',adminRouter)
 app.use(shopRouter)
