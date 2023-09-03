@@ -1,6 +1,7 @@
 const express=require("express");
 const bodyParser=require('body-parser');
 const app=express();
+const path=require('path')
 const port=3000;
 
 app.use(bodyParser.urlencoded({extended:false}))
@@ -18,7 +19,7 @@ app.use(shopRouter)
 
 
 app.use((req,res,next)=>{
-    res.status(404).send("<h1>Page not found</h1>")
+    res.status(404).sendFile(path.join(__dirname,'views','404.html'))
 })
 
 
