@@ -1,13 +1,10 @@
 const express=require('express');
 const router=express.Router();
 const path=require('path');
-const rootDir=require('../util/path')
+// const rootDir=require('../util/path')
+const successControllerMain=require('../controller/csuccess')
 
 
-router.get("/success",(req,res,next)=>{
-    // res.sendFile(path.join(__dirname,'..',"views","shop.html"))
-    ////instead of this we can even use rootDir and require it from util
-    res.sendFile(path.join(rootDir,"views","success.html"))
-});
+router.get("/success",successControllerMain.successControllerGet)
 
 module.exports=router

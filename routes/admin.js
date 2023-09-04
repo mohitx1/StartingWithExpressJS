@@ -1,16 +1,12 @@
 const express=require('express');
 const router=express.Router()
 const path=require('path')
+const adminControllerMain=require('../controller/cadmin')
 
 //using same routes for get and post requests
-router.get('/add-product',(req,res,next)=>{
-    res.sendFile(path.join(__dirname,"../","views","add-product.html"))
-})
+router.get('/add-product',adminControllerMain.adminControllerGet)
 
 //post route same as add-product
-router.post("/add-product",(req,res,next)=>{
-    console.log(req.body.title)
-    res.redirect('/')
-})
+router.post("/add-product",adminControllerMain.adminControllerPost)
 
 module.exports=router
