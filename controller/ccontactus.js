@@ -1,12 +1,12 @@
-const path=require('path')
-const fs=require('fs')
+const path=require('path');
+const fs=require('fs');
 
-exports.contactusControllerGet=(req,res,next)=>{
+const contactusControllerGet=(req,res,next)=>{
     res.sendFile(path.join(__dirname,"../","views","contactus.html"))
-}
+};
 
 
-exports.contactusControllerPost= (req, res, next) => {
+const contactusControllerPost= (req, res, next) => {
     console.log(`Name: ${req.body.name} - Email id: ${req.body.email}`);
     const userDetails = `Name: ${req.body.name} - Email id: ${req.body.email}\n`;
     
@@ -18,4 +18,9 @@ exports.contactusControllerPost= (req, res, next) => {
             res.redirect('/success');
         }
     });
-}
+};
+
+module.exports={
+    contactusControllerGet,
+    contactusControllerPost
+};
